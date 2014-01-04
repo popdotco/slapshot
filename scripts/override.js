@@ -3,15 +3,14 @@ var ConsoleOverride = {
     /**
      * Stored console log messages.
      */
-    message: '',
+    messages: [],
 
     /**
-     * Inintialize the saver.
+     * Inintialize the override.
      */
     init: function() {
         this.overrideConsoleLog();
         this.bindWindowClose();
-
     },
 
     /**
@@ -39,7 +38,7 @@ var ConsoleOverride = {
                 }
             }
 
-            that.message.append(msg);
+            that.messages.append(msg);
 
             if (_console) {
                 _console.apply(console, arguments);
@@ -64,11 +63,11 @@ var ConsoleOverride = {
      */
     saveToFile: function() {
         var filename = window.location.hostname + '-' + window.location.pathname.replace('/', '_'),
-            uriContent = "data:application/octet-stream," + encodeURIComponent(this.message),
+            uriContent = "data:application/octet-stream," + encodeURIComponent(this.messages),
             newWindow;
 
         // add timestamp to filename
-        filename = '-' + new Date().getTime() + '.log',
+        filename += '-' + new Date().getTime() + '.log',
 
         // trigger new window for download
         newWindow = window.open(uriContent, filename);
@@ -76,7 +75,7 @@ var ConsoleOverride = {
 
 };
 
-// Run our kitten generation script as soon as the document's DOM is ready.
-document.addEventListener('DOMContentLoaded', function () {
-  kittenGenerator.requestKittens();
+// run the console override when the DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    ConsoleOverride.init();
 });
