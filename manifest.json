@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "Console Log to File",
+    "description": "This extension demonstrates a browser action with kittens.",
+    "version": "1.0",
+    "devtools_page": "debugger.html",
+	"permissions": [
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+	],
+	"background": {
+		"scripts": ["scripts/background.js"]
+	},
+    /*
+    "permissions": [
+        "http://github.com/*",
+        "unlimitedStorage"
+    ],
+    */
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    /*
+    "content_scripts": [{
+        "matches": ["http://dev.pop.co/*", "https://dev.pop.co/*"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+    }]
+    */
+}
